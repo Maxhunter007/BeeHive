@@ -6,12 +6,15 @@ public class SimpleBoid : MonoBehaviour
 {
     public float speed = 5.0f;
     
-    private float minDist = 3.0f;
-    private float maxDist = 10.0f;
-
-    private float alignmentW = 0.8f;
-    private float separationW = 1.0f;
-    private float cohesionW = 1.0f;
+    private float minDist = 1.0f;
+    private float maxDist = 3.0f;
+    
+    [SerializeField]
+    private float alignmentW = 1.0f;
+    [SerializeField]
+    private float separationW = 0.8f;
+    [SerializeField]
+    private float cohesionW = 1.2f;
 
     private List<GameObject> boids;
     
@@ -40,8 +43,10 @@ public class SimpleBoid : MonoBehaviour
         force += cohesionW * Vector3.Normalize(cohesion(boids));
 
         force *= speed;
-
+        
+        this.transform.rotation = Quaternion.identity;
         rb.velocity = force;
+        //this.transform.position += force;
     }
 
     Vector3 separation(List<GameObject> boids)
@@ -52,7 +57,12 @@ public class SimpleBoid : MonoBehaviour
         {
             if (Vector3.Distance(boid.transform.position, this.transform.position) < minDist)
             {
-                sepForce += this.transform.position - boid.transform.position;
+                sepForce += Vector3.Normalize(this.transform.position - boid.transform.position);
+            }
+
+            if (Vector3.Distance(boid.transform.position, this.transform.position) == 0.0f)
+            {
+                sepForce += new Vector3(Random.Range(1.0f, 5.0f), Random.Range(1.0f, 5.0f), 0.0f);
             }
         }
 
