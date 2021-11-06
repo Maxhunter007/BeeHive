@@ -7,6 +7,8 @@
         <e p="Scripts" t="Include">
           <e p="BoidLeader.cs" t="Include" />
           <e p="BoidManager.cs" t="Include" />
+          <e p="HUDManager.cs" t="Include" />
+          <e p="RessourcenManager.cs" t="Include" />
           <e p="SimpleBoid.cs" t="Include" />
           <e p="Singleton.cs" t="Include" />
         </e>

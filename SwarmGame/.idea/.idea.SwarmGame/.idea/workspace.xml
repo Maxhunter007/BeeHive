@@ -20,7 +20,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2c0ab39c-3afe-45c0-b813-3319dd7ad128" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.SwarmGame/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SwarmGame/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.SwarmGame/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SwarmGame/.idea/indexLayout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.SwarmGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SwarmGame/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/boidTestScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/boidTestScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BoidLeader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BoidLeader.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BoidManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BoidManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SimpleBoid.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SimpleBoid.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,8 +42,8 @@
         <option value="$PROJECT_DIR$/Assets/BoidLeader.cs" />
         <option value="$PROJECT_DIR$/Assets/SimpleBoid.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Singleton.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/BoidLeader.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/BoidManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/BoidLeader.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/SimpleBoid.cs" />
       </list>
     </option>
@@ -88,7 +94,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1636144739977</updated>
-      <workItem from="1636144745845" duration="3625000" />
+      <workItem from="1636144745845" duration="4403000" />
+      <workItem from="1636186329555" duration="3518000" />
     </task>
     <servers />
   </component>
@@ -107,6 +114,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
