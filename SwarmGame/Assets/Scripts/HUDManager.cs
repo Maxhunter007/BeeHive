@@ -1,13 +1,25 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
+
+public enum TileTypes
+{
+    nullTile,
+    beehive
+}
 
 public class HUDManager : MonoBehaviour
 {
     private bool initialized = false;
-    
+
     private Text pollenAmount = null;
+    private GameObject buildButton = null;
+    private GameObject buildMenu = null;
+    
+    private TilemapManager tilemapManager = null;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,7 +35,12 @@ public class HUDManager : MonoBehaviour
 
     private void InitializeReferences()
     {
-        pollenAmount = gameObject.GetComponentInChildren<Text>();
+        pollenAmount = gameObject.transform.Find("PollenAmount").GetComponent<Text>();
+        buildButton = gameObject.transform.Find("BuildButton").gameObject;
+        buildMenu = gameObject.transform.Find("BuildMenu").gameObject;
+        buildMenu.SetActive(false);
+        
+        tilemapManager = GameObject.Find("Grid").GetComponent<TilemapManager>();
     }
 
     public bool GetInitialized()
@@ -34,5 +51,25 @@ public class HUDManager : MonoBehaviour
     public void UpdatePollenAmount(int newPollen)
     {
         pollenAmount.text = "Pollen: " + newPollen;
+    }
+
+    public void BuildButton()
+    {
+        buildButton.SetActive(false);
+        buildMenu.SetActive(true);
+    }
+
+    public void BuyHiveButton()
+    {
+
+        buildMenu.SetActive(false);
+        tilemapManager.SelectTile(TileTypes.beehive);
+        tilemapManager.buying = true;
+
+    }
+    
+    public void EnableBuyButton()
+    {
+        buildButton.SetActive(true);
     }
 }

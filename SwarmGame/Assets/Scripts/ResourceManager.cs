@@ -2,18 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RessourcenManager : MonoBehaviour
+public class ResourceManager : MonoBehaviour
 {
     private int pollen;
     private readonly int startingPollen = 100;
 
-    [SerializeField] private HUDManager Hud = null;
+    public readonly int hiveCost = 10;
+
+    private HUDManager hud = null;
+    
+    public Dictionary<TileTypes, int> tileCostMap = new Dictionary<TileTypes, int>();
     
     // Start is called before the first frame update
     void Start()
     {
-        //InitializeReferences();
+        InitializeReferences();
         InitializeResources();
+        InitializeBuildCosts();
         
     }
 
@@ -27,6 +32,11 @@ public class RessourcenManager : MonoBehaviour
     {
         pollen = startingPollen;
         UpdateUI();
+    }
+    private void InitializeBuildCosts()
+    {
+        tileCostMap.Add(TileTypes.nullTile, 0);
+        tileCostMap.Add(TileTypes.beehive, 10);
     }
 
     public int GetPollen()
@@ -42,14 +52,20 @@ public class RessourcenManager : MonoBehaviour
     
     private void InitializeReferences()
     {
-        
+        hud = GameObject.Find("HUD").GetComponent<HUDManager>();
     }
 
     private void UpdateUI()
     {
-        if (Hud.GetInitialized())
+        if (hud.GetInitialized())
         {
-            Hud.UpdatePollenAmount(pollen);
+            hud.UpdatePollenAmount(pollen);
+        }
+        else
+        {
+            Debug.Log("Hud not initialized yet!");
         }
     }
+
+    
 }
