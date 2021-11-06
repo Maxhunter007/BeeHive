@@ -13,6 +13,7 @@ public class TilemapManager : MonoBehaviour
     private Tile hoverTile = null;
 
     public bool buying = false;
+    public bool inMenu = false;
 
     private List<Tile> buyableTiles = new List<Tile>();
 
@@ -71,6 +72,7 @@ public class TilemapManager : MonoBehaviour
                 resourceManager.AddPollen(-resourceManager.hiveCost);
                 objectsMap.SetTile(mousePos, hoverTile);
                 buying = false;
+                inMenu = false;
                 hudManager.EnableBuyButton();
             }
             else
@@ -105,6 +107,8 @@ public class TilemapManager : MonoBehaviour
 
     private void abortBuying()
     {
+        buying = false;
+        inMenu = false;
         SelectTile(TileTypes.nullTile);
         hudManager.EnableBuyButton();
     }

@@ -55,6 +55,7 @@ public class HUDManager : MonoBehaviour
 
     public void BuildButton()
     {
+        tilemapManager.inMenu = true;
         buildButton.SetActive(false);
         buildMenu.SetActive(true);
     }
