@@ -15,7 +15,7 @@ public class HUDManager : MonoBehaviour
     private bool initialized = false;
 
     private Text pollenAmount = null;
-    private Text nectarAmount = null;
+    // private Text nectarAmount = null;
     private Text honeyAmount = null;
     private Text waxAmount = null;
     private GameObject buildButton = null;
@@ -27,8 +27,7 @@ public class HUDManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InitializeReferences();
-        initialized = true;
+        //InitializeReferences();
     }
 
     // Update is called once per frame
@@ -37,10 +36,10 @@ public class HUDManager : MonoBehaviour
         
     }
 
-    private void InitializeReferences()
+    public void InitializeReferences()
     {
         pollenAmount = gameObject.transform.Find("PollenAmount").GetComponent<Text>();
-        nectarAmount = gameObject.transform.Find("NectarAmount").GetComponent<Text>();
+        // nectarAmount = gameObject.transform.Find("NectarAmount").GetComponent<Text>();
         honeyAmount = gameObject.transform.Find("HoneyAmount").GetComponent<Text>();
         waxAmount = gameObject.transform.Find("WaxAmount").GetComponent<Text>();
         
@@ -50,6 +49,7 @@ public class HUDManager : MonoBehaviour
         
         tilemapManager = GameObject.Find("Grid").GetComponent<TilemapManager>();
         resourceManager = GameObject.Find("ResourceManager").GetComponent<ResourceManager>();
+        initialized = true;
     }
 
     public bool GetInitialized()
@@ -60,9 +60,14 @@ public class HUDManager : MonoBehaviour
     public void UpdateResourceAmount()
     {
         pollenAmount.text = "Pollen: " + resourceManager.GetPollen();
-        nectarAmount.text = "Nectar: " + resourceManager.GetNectar();
+        // nectarAmount.text = "Nectar: " + resourceManager.GetNectar();
         honeyAmount.text = "Honey: " + resourceManager.GetHoney();
         waxAmount.text = "Wax: " + resourceManager.GetWax();
+    }
+
+    public void ChangeHoneyButton()
+    {
+        resourceManager.ChangeHoney();
     }
 
     public void BuildButton()

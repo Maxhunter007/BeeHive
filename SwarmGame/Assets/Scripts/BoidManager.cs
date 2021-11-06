@@ -14,7 +14,7 @@ public class BoidManager : MonoBehaviour
     {
         for (int i = 0; i < boidCount; i++)
         {
-            createBoid(Vector3.zero);
+            createBoid(new Vector3(-1, -1, 0));
         }
         
         boids.Add(GameObject.Find("BoidLeader"));

@@ -14,6 +14,8 @@ public class BoidLeader : MonoBehaviour
     public Grid grid;
     public float speed = 3.1f;
     public float maxVelocity = 10.0f;
+
+    private Camera cam;
     
     // Start is called before the first frame update
     void Start()
@@ -21,6 +23,7 @@ public class BoidLeader : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         tm = grid.GetComponent<TilemapManager>();
         boidList = FindObjectOfType<BoidManager>().getBoidList();
+        cam = Camera.main;
     }
 
     // Update is called once per frame
@@ -30,13 +33,20 @@ public class BoidLeader : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(0))
             {
-                targetPos = Input.mousePosition;
-                targetPos.z = 0.3f;
-                targetPos = Camera.main.ScreenToWorldPoint(targetPos);
-                targetPos = grid.CellToWorld(grid.WorldToCell(targetPos));
-                targetPos.z = 0;
-                Debug.Log(targetPos);
-                hasTarget = true;
+                Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+                RaycastHit hit;
+                if (Physics.Raycast(ray, out hit)){
+                    if (hit.transform.CompareTag("Ground"))
+                    {
+                        targetPos = Input.mousePosition;
+                        targetPos.z = 0.3f;
+                        targetPos = cam.ScreenToWorldPoint(targetPos);
+                        targetPos = grid.CellToWorld(grid.WorldToCell(targetPos));
+                        targetPos.z = 0;
+                        Debug.Log(targetPos);
+                        hasTarget = true;
+                    }
+                }
             }
 
             if (hasTarget)

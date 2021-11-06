@@ -43,7 +43,7 @@ public class SimpleBoid : MonoBehaviour
     void Update()
     {
         boids = manager.getBoidList();
-        
+
         Vector3 force = new Vector3(0, 0, 0);
 
         force += alignmentW * Vector3.Normalize(alignment());
@@ -51,7 +51,6 @@ public class SimpleBoid : MonoBehaviour
         force += cohesionW * Vector3.Normalize(cohesion(boids));
 
         force *= speed;
-        
         rb.velocity = force;
         //this.transform.position += force;
     }

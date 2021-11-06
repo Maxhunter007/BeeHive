@@ -5,12 +5,15 @@ using UnityEngine;
 public class ResourceManager : MonoBehaviour
 {
     private int pollen;
-    private int nectar;
+    // private int nectar;
     private int honey;
     private int wax;
+    
+    private float honeyDecayTime = 5.0f;
+    private float counter = 0.0f;
 
     private readonly int startingPollen = 10;
-    private readonly int startingNectar = 10;
+    // private readonly int startingNectar = 10;
     private readonly int startingHoney = 10;
     private readonly int startingWax = 10;
     
@@ -36,13 +39,26 @@ public class ResourceManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        counter += Time.deltaTime;
+        if (counter >= honeyDecayTime)
+        {
+            if (honey > 0)
+            {
+                honey--;
+            }
+            else
+            {
+                Application.Quit();
+            }
+            UpdateUI();
+            counter = 0.0f;
+        }
     }
     
     private void InitializeResources()
     {
         pollen = startingPollen;
-        nectar = startingNectar;
+        // nectar = startingNectar;
         honey = startingHoney;
         wax = startingWax;
         UpdateUI();
@@ -57,10 +73,10 @@ public class ResourceManager : MonoBehaviour
     {
         return pollen;
     }
-    public int GetNectar()
-    {
-        return nectar;
-    }
+    // public int GetNectar()
+    // {
+    //     return nectar;
+    // }
     public int GetHoney()
     {
         return honey;
@@ -74,6 +90,16 @@ public class ResourceManager : MonoBehaviour
     {
         pollen += addedPollen;
         UpdateUI();
+    }
+
+    public void ChangeHoney()
+    {
+        if (honey >= 6)
+        {
+            honey -= 6;
+            wax++;
+            UpdateUI();
+        }
     }
     
     private void InitializeReferences()
@@ -89,7 +115,9 @@ public class ResourceManager : MonoBehaviour
         }
         else
         {
-            Debug.Log("Hud not initialized yet!");
+            hud.InitializeReferences();
+            hud.UpdateResourceAmount();
+            // Debug.Log("Hud not initialized yet!");
         }
     }
 
