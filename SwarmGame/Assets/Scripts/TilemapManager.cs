@@ -9,9 +9,10 @@ public class TilemapManager : MonoBehaviour
     private Grid grid = null;
     private Tilemap buyPreviewMap = null; 
     private Tilemap objectsMap = null;
+    private Tilemap groundMap = null;
     private TileTypes hoverTileType = TileTypes.nullTile;
     private Tile hoverTile = null;
-    public Tile test;
+    public Tile BeeHiveTile;
 
     public bool buying = false;
     public bool inMenu = false;
@@ -25,10 +26,13 @@ public class TilemapManager : MonoBehaviour
     private Camera camera = null;
 
     private BoidManager boidManager;
+    
+    public Dictionary<Vector3Int, int> tileAvailablePollen = new Dictionary<Vector3Int, int>();
 
     // Start is called before the first frame update
     void Start() {
         InitializeReferences();
+        InitializeDictionary();
         boidManager = GameObject.Find("BoidManager").GetComponent<BoidManager>();
     }
 
@@ -47,12 +51,33 @@ public class TilemapManager : MonoBehaviour
         grid = gameObject.GetComponent<Grid>();
         buyPreviewMap = gameObject.transform.Find("BuyPreviewMap").GetComponent<Tilemap>();
         objectsMap = gameObject.transform.Find("ObjectsMap").GetComponent<Tilemap>();
+        groundMap = gameObject.transform.Find("GroundMap").GetComponent<Tilemap>();
         //buyableTiles.Add((Tile)AssetDatabase.LoadAssetAtPath("Assets/Tilemaps/Ground/testtile_hive.asset", typeof(Tile)));
-        buyableTiles.Add(test);
+        buyableTiles.Add(BeeHiveTile);
         hudManager = GameObject.Find("HUD").GetComponent<HUDManager>();
         resourceManager = GameObject.Find("ResourceManager").GetComponent<ResourceManager>();
         camera = Camera.main;
 
+    }
+
+    private void InitializeDictionary()
+    {
+        Vector3Int currentpos;
+        for (int x = objectsMap.cellBounds.xMin; x < objectsMap.cellBounds.xMax; x++)
+        {
+            for (int y = objectsMap.cellBounds.yMin; y < objectsMap.cellBounds.yMax; y++)
+            {
+                currentpos = new Vector3Int(x, y, 0);
+                if (objectsMap.HasTile(currentpos) && objectsMap.GetTile(currentpos).name.Equals("Flowers_01"))
+                {
+                    tileAvailablePollen.Add(currentpos, 10);
+                }
+                else
+                {
+                    tileAvailablePollen.Add(currentpos, 0);
+                }
+            }
+        }
     }
     
     private Vector3Int GetMousePosition () {

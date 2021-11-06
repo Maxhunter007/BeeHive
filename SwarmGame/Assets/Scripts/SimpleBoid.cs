@@ -7,7 +7,7 @@ public class SimpleBoid : MonoBehaviour
     private bool isCarryingNectar;
     private bool isCarryingPollen;
     
-    public float speed = 5.0f;
+    public float speed = 3.0f;
     
     private float minDist = 0.5f;
     private float maxDist = 1.0f;
@@ -15,7 +15,7 @@ public class SimpleBoid : MonoBehaviour
     [SerializeField]
     private float alignmentW = 1.0f;
     [SerializeField]
-    private float separationW = 0.8f;
+    private float separationW = 0.9f;
     [SerializeField]
     private float cohesionW = 1.2f;
 

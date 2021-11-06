@@ -11,7 +11,7 @@ public class BoidLeader : MonoBehaviour
     private TilemapManager tm;
     
     public Grid grid;
-    public float speed = 5.0f;
+    public float speed = 3.1f;
     public float maxVelocity = 10.0f;
     
     // Start is called before the first frame update
