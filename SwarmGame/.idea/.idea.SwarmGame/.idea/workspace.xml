@@ -19,7 +19,22 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2c0ab39c-3afe-45c0-b813-3319dd7ad128" name="Default Changelist" comment="" />
+    <list default="true" id="2c0ab39c-3afe-45c0-b813-3319dd7ad128" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.SwarmGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SwarmGame/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/bee.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/bee.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BoidLeader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BoidLeader.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SimpleBoid.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SimpleBoid.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/TilemapManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/TilemapManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemaps/Ground/Flowers_01.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemaps/Ground/Ground.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemaps/Ground/Ground.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemaps/Ground/testflowers.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemaps/Ground/testtile_hive.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemaps/Ground/testtile_hive.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemaps/imagesources/testflowers.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemaps/imagesources/testtile_hive.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemaps/imagesources/testtile_hive.png.meta" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

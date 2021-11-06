@@ -6,9 +6,9 @@ using UnityEditor;
 
 public class TilemapManager : MonoBehaviour
 {
-    private Grid grid = null;
+    public Grid grid = null;
     private Tilemap buyPreviewMap = null; 
-    private Tilemap objectsMap = null;
+    public Tilemap objectsMap = null;
     private Tilemap groundMap = null;
     private TileTypes hoverTileType = TileTypes.nullTile;
     private Tile hoverTile = null;

@@ -4,20 +4,21 @@ using UnityEngine;
 
 public class SimpleBoid : MonoBehaviour
 {
-    private bool isCarryingNectar;
-    private bool isCarryingPollen;
-    
+    public bool isCarryingResources;
+
     public float speed = 3.0f;
     
-    private float minDist = 0.5f;
-    private float maxDist = 1.0f;
+    [SerializeField]
+    private float minDist = 1.0f;
+    [SerializeField]
+    private float maxDist = 1.2f;
     
     [SerializeField]
-    private float alignmentW = 1.0f;
+    private float alignmentW = 0.9f;
     [SerializeField]
-    private float separationW = 0.9f;
+    private float separationW = 1.8f;
     [SerializeField]
-    private float cohesionW = 1.2f;
+    private float cohesionW = 0.8f;
 
     private List<GameObject> boids;
     
@@ -25,12 +26,16 @@ public class SimpleBoid : MonoBehaviour
 
     public GameObject leader;
     public BoidManager manager;
+    private TilemapManager tilemapManager;
+    private ResourceManager resourceManager;
 
     // Start is called before the first frame update
     void Start()
     {
         leader = GameObject.Find("BoidLeader");
         manager = GameObject.Find("BoidManager").GetComponent<BoidManager>();
+        resourceManager = FindObjectOfType<ResourceManager>();
+        tilemapManager = FindObjectOfType<TilemapManager>();
         rb = GetComponent<Rigidbody>();
     }
 
@@ -47,7 +52,6 @@ public class SimpleBoid : MonoBehaviour
 
         force *= speed;
         
-        this.transform.rotation = Quaternion.identity;
         rb.velocity = force;
         //this.transform.position += force;
     }
@@ -65,7 +69,7 @@ public class SimpleBoid : MonoBehaviour
 
             if (Vector3.Distance(boid.transform.position, this.transform.position) == 0.0f)
             {
-                sepForce += new Vector3(Random.Range(1.0f, 5.0f), Random.Range(1.0f, 5.0f), 0.0f);
+                sepForce += new Vector3(Random.Range(-5.0f, 5.0f), Random.Range(-5.0f, 5.0f), 0.0f);
             }
         }
 
@@ -95,5 +99,19 @@ public class SimpleBoid : MonoBehaviour
     public void setLeader(GameObject ld)
     {
         leader = ld;
+    }
+
+    public void TryGatherResources()
+    {
+        if (tilemapManager.tileAvailablePollen[tilemapManager.grid.WorldToCell(leader.transform.position)]>0 && !isCarryingResources)
+        {
+            isCarryingResources = true;
+            tilemapManager.tileAvailablePollen[tilemapManager.grid.WorldToCell(leader.transform.position)] -= 1;
+        }
+    }
+
+    public void DeliverResources()
+    {
+        
     }
 }

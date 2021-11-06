@@ -9,7 +9,8 @@ public class BoidLeader : MonoBehaviour
     private Vector3 targetPos = new Vector3();
     private bool hasTarget;
     private TilemapManager tm;
-    
+    private List<GameObject> boidList;
+
     public Grid grid;
     public float speed = 3.1f;
     public float maxVelocity = 10.0f;
@@ -19,6 +20,7 @@ public class BoidLeader : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         tm = grid.GetComponent<TilemapManager>();
+        boidList = FindObjectOfType<BoidManager>().getBoidList();
     }
 
     // Update is called once per frame
@@ -58,6 +60,24 @@ public class BoidLeader : MonoBehaviour
         else
         {
             targetPos = transform.position;
+        }
+
+        if (tm.objectsMap.HasTile(grid.WorldToCell(targetPos)))
+        {
+            if (tm.objectsMap.GetTile(grid.WorldToCell(targetPos)).name.Equals("Flowers_01"))
+            {
+                foreach (GameObject boid in boidList)
+                {
+                    if (boid.TryGetComponent(out SimpleBoid simpleBoid))
+                    {
+                        simpleBoid.TryGatherResources();
+                    }
+                }
+            }
+            else if (tm.objectsMap.GetTile(grid.WorldToCell(targetPos)).name.Equals("Flowers_01"))
+            {
+                
+            }
         }
     }
 }
