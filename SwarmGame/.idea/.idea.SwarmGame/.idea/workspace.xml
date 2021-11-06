@@ -20,9 +20,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2c0ab39c-3afe-45c0-b813-3319dd7ad128" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.SwarmGame/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SwarmGame/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SwarmGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SwarmGame/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BoidLeader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BoidLeader.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/bee_move.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/bee_move.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/GridTestScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GridTestScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/HUDManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/HUDManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ResourceManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ResourceManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SimpleBoid.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SimpleBoid.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemaps/Ground/Ground.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tilemaps/Ground/Ground.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/PackageManagerSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/PackageManagerSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -15,10 +15,14 @@ public class HUDManager : MonoBehaviour
     private bool initialized = false;
 
     private Text pollenAmount = null;
+    private Text nectarAmount = null;
+    private Text honeyAmount = null;
+    private Text waxAmount = null;
     private GameObject buildButton = null;
     private GameObject buildMenu = null;
     
     private TilemapManager tilemapManager = null;
+    private ResourceManager resourceManager = null;
 
     // Start is called before the first frame update
     void Start()
@@ -36,11 +40,16 @@ public class HUDManager : MonoBehaviour
     private void InitializeReferences()
     {
         pollenAmount = gameObject.transform.Find("PollenAmount").GetComponent<Text>();
+        nectarAmount = gameObject.transform.Find("NectarAmount").GetComponent<Text>();
+        honeyAmount = gameObject.transform.Find("HoneyAmount").GetComponent<Text>();
+        waxAmount = gameObject.transform.Find("WaxAmount").GetComponent<Text>();
+        
         buildButton = gameObject.transform.Find("BuildButton").gameObject;
         buildMenu = gameObject.transform.Find("BuildMenu").gameObject;
         buildMenu.SetActive(false);
         
         tilemapManager = GameObject.Find("Grid").GetComponent<TilemapManager>();
+        resourceManager = GameObject.Find("ResourceManager").GetComponent<ResourceManager>();
     }
 
     public bool GetInitialized()
@@ -48,9 +57,12 @@ public class HUDManager : MonoBehaviour
         return initialized;
     }
 
-    public void UpdatePollenAmount(int newPollen)
+    public void UpdateResourceAmount()
     {
-        pollenAmount.text = "Pollen: " + newPollen;
+        pollenAmount.text = "Pollen: " + resourceManager.GetPollen();
+        nectarAmount.text = "Nectar: " + resourceManager.GetNectar();
+        honeyAmount.text = "Honey: " + resourceManager.GetHoney();
+        waxAmount.text = "Wax: " + resourceManager.GetWax();
     }
 
     public void BuildButton()

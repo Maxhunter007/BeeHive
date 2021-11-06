@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class SimpleBoid : MonoBehaviour
 {
+    private bool isCarryingNectar;
+    private bool isCarryingPollen;
+    
     public float speed = 5.0f;
     
-    private float minDist = 1.0f;
-    private float maxDist = 3.0f;
+    private float minDist = 0.5f;
+    private float maxDist = 1.0f;
     
     [SerializeField]
     private float alignmentW = 1.0f;

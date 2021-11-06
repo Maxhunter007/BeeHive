@@ -5,9 +5,20 @@ using UnityEngine;
 public class ResourceManager : MonoBehaviour
 {
     private int pollen;
-    private readonly int startingPollen = 100;
+    private int nectar;
+    private int honey;
+    private int wax;
+
+    private readonly int startingPollen = 10;
+    private readonly int startingNectar = 10;
+    private readonly int startingHoney = 10;
+    private readonly int startingWax = 10;
+    
 
     public readonly int hiveCost = 10;
+    public readonly int treeCost = 10;
+    public readonly int honeyCost = 10;
+    public readonly int waxCost = 10;
 
     private HUDManager hud = null;
     
@@ -31,6 +42,9 @@ public class ResourceManager : MonoBehaviour
     private void InitializeResources()
     {
         pollen = startingPollen;
+        nectar = startingNectar;
+        honey = startingHoney;
+        wax = startingWax;
         UpdateUI();
     }
     private void InitializeBuildCosts()
@@ -42,6 +56,18 @@ public class ResourceManager : MonoBehaviour
     public int GetPollen()
     {
         return pollen;
+    }
+    public int GetNectar()
+    {
+        return nectar;
+    }
+    public int GetHoney()
+    {
+        return honey;
+    }
+    public int GetWax()
+    {
+        return wax;
     }
 
     public void AddPollen(int addedPollen)
@@ -59,7 +85,7 @@ public class ResourceManager : MonoBehaviour
     {
         if (hud.GetInitialized())
         {
-            hud.UpdatePollenAmount(pollen);
+            hud.UpdateResourceAmount();
         }
         else
         {
