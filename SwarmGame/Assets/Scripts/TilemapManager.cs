@@ -23,9 +23,12 @@ public class TilemapManager : MonoBehaviour
     private ResourceManager resourceManager = null;
     private Camera camera = null;
 
+    private BoidManager boidManager;
+
     // Start is called before the first frame update
     void Start() {
         InitializeReferences();
+        boidManager = GameObject.Find("BoidManager").GetComponent<BoidManager>();
     }
 
 
@@ -71,6 +74,7 @@ public class TilemapManager : MonoBehaviour
             {
                 resourceManager.AddPollen(-resourceManager.hiveCost);
                 objectsMap.SetTile(mousePos, hoverTile);
+                boidManager.createBoid(grid.CellToWorld(mousePos));
                 buying = false;
                 inMenu = false;
                 hudManager.EnableBuyButton();
