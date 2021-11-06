@@ -9,8 +9,8 @@ public class SimpleBoid : MonoBehaviour
     
     public float speed = 3.0f;
     
-    private float minDist = 0.5f;
-    private float maxDist = 1.0f;
+    private float minDist = 1f;
+    private float maxDist = 4f;
     
     [SerializeField]
     private float alignmentW = 1.0f;
@@ -38,7 +38,7 @@ public class SimpleBoid : MonoBehaviour
     void Update()
     {
         boids = manager.getBoidList();
-        
+
         Vector3 force = new Vector3(0, 0, 0);
 
         force += alignmentW * Vector3.Normalize(alignment());
@@ -46,8 +46,7 @@ public class SimpleBoid : MonoBehaviour
         force += cohesionW * Vector3.Normalize(cohesion(boids));
 
         force *= speed;
-        
-        this.transform.rotation = Quaternion.identity;
+
         rb.velocity = force;
         //this.transform.position += force;
     }
@@ -65,7 +64,7 @@ public class SimpleBoid : MonoBehaviour
 
             if (Vector3.Distance(boid.transform.position, this.transform.position) == 0.0f)
             {
-                sepForce += new Vector3(Random.Range(1.0f, 5.0f), Random.Range(1.0f, 5.0f), 0.0f);
+                sepForce += new Vector3(Random.Range(-5.0f, 5.0f), Random.Range(-5.0f, 5.0f), 0.0f);
             }
         }
 
