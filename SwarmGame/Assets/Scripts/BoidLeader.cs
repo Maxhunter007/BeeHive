@@ -31,7 +31,7 @@ public class BoidLeader : MonoBehaviour
                 targetPos = Input.mousePosition;
                 targetPos.z = 0.3f;
                 targetPos = Camera.main.ScreenToWorldPoint(targetPos);
-                targetPos = grid.WorldToCell(targetPos);
+                targetPos = grid.CellToWorld(grid.WorldToCell(targetPos));
                 targetPos.z = 0;
                 Debug.Log(targetPos);
                 hasTarget = true;
@@ -54,6 +54,10 @@ public class BoidLeader : MonoBehaviour
                     hasTarget = false;
                 }
             }
+        }
+        else
+        {
+            targetPos = transform.position;
         }
     }
 }
