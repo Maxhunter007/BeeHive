@@ -8,9 +8,10 @@
           <e p="BoidLeader.cs" t="Include" />
           <e p="BoidManager.cs" t="Include" />
           <e p="HUDManager.cs" t="Include" />
-          <e p="RessourcenManager.cs" t="Include" />
+          <e p="ResourceManager.cs" t="Include" />
           <e p="SimpleBoid.cs" t="Include" />
           <e p="Singleton.cs" t="Include" />
+          <e p="TilemapManager.cs" t="Include" />
         </e>
       </e>
       <e p="obj" t="ExcludeRecursive" />

@@ -52,7 +52,7 @@ public class SimpleBoid : MonoBehaviour
     Vector3 separation(List<GameObject> boids)
     {
         Vector3 sepForce = new Vector3(0, 0, 0);
-        
+
         foreach (var boid in boids)
         {
             if (Vector3.Distance(boid.transform.position, this.transform.position) < minDist)
