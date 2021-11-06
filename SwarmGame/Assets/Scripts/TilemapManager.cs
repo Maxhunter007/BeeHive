@@ -107,6 +107,7 @@ public class TilemapManager : MonoBehaviour
     {
         SelectTile(TileTypes.nullTile);
         hudManager.EnableBuyButton();
+        buyPreviewMap.SetTile(GetMousePosition(), null);
     }
     
     
