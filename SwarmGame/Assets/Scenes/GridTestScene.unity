@@ -1341,6 +1341,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9df7af0b99793fe479812218bb4179cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  test: {fileID: 11400000, guid: 4102e096892ba834d909937987504e34, type: 2}
   buying: 0
   inMenu: 0
 --- !u!1 &587448822

@@ -11,6 +11,7 @@ public class TilemapManager : MonoBehaviour
     private Tilemap objectsMap = null;
     private TileTypes hoverTileType = TileTypes.nullTile;
     private Tile hoverTile = null;
+    public Tile test;
 
     public bool buying = false;
     public bool inMenu = false;
@@ -46,8 +47,8 @@ public class TilemapManager : MonoBehaviour
         grid = gameObject.GetComponent<Grid>();
         buyPreviewMap = gameObject.transform.Find("BuyPreviewMap").GetComponent<Tilemap>();
         objectsMap = gameObject.transform.Find("ObjectsMap").GetComponent<Tilemap>();
-        buyableTiles.Add((Tile)AssetDatabase.LoadAssetAtPath("Assets/Tilemaps/Ground/testtile_hive.asset", typeof(Tile)));
-
+        //buyableTiles.Add((Tile)AssetDatabase.LoadAssetAtPath("Assets/Tilemaps/Ground/testtile_hive.asset", typeof(Tile)));
+        buyableTiles.Add(test);
         hudManager = GameObject.Find("HUD").GetComponent<HUDManager>();
         resourceManager = GameObject.Find("ResourceManager").GetComponent<ResourceManager>();
         camera = Camera.main;
