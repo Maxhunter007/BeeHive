@@ -111,6 +111,7 @@ public class TilemapManager : MonoBehaviour
         inMenu = false;
         SelectTile(TileTypes.nullTile);
         hudManager.EnableBuyButton();
+        buyPreviewMap.SetTile(GetMousePosition(), null);
     }
     
     
