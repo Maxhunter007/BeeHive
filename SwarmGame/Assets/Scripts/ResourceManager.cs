@@ -61,7 +61,7 @@ public class ResourceManager : MonoBehaviour
             }
             else
             {
-                Application.Quit();
+                hud.ToggleDeathScreen();
             }
             UpdateUI();
             counter = 0.0f;
@@ -119,10 +119,10 @@ public class ResourceManager : MonoBehaviour
 
     public void ChangeHoney()
     {
-        if (honey >= 6)
+        if (honey >= 30)
         {
-            honey -= 6;
-            wax++;
+            honey -= 30;
+            wax+= 5;
             UpdateUI();
         }
     }

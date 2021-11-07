@@ -7,23 +7,26 @@ public class WaspManager : MonoBehaviour
 {
     public GameObject wasp;
     
-    private float waspSpawnTime = 5.0f;
+    private float waspSpawnTime = 15.0f;
     private int waspSpawnAmount = 1;
     private float waspSpawnTimer = 0.0f;
+    private bool gameOver = false;
     
-    private float diffOne = 20.0f;
-    private float diffTwo = 40.0f;
-    private float diffThree = 60.0f;
+    private float diffOne = 60.0f;
+    private float diffTwo = 120.0f;
+    private float diffThree = 240.0f;
     private float difficultyCounter = 0.0f;
     private bool isMaxDiff = false;
 
     public Grid grid;
     private TilemapManager tm;
     private List<Vector3> possibleSpawnPositions = new List<Vector3>();
+    private HUDManager hm;
     
     // Start is called before the first frame update
     void Start()
     {
+        hm = GameObject.Find("HUD").GetComponent<HUDManager>();
         tm = grid.GetComponent<TilemapManager>();
 
         for (int y = tm.groundMap.origin.y; y < tm.groundMap.origin.y + tm.groundMap.size.y; y++)
@@ -76,6 +79,27 @@ public class WaspManager : MonoBehaviour
             }
             
             waspSpawnTimer = 0.0f;
+        }
+        
+        gameOver = true;
+        for (int y = tm.objectsMap.origin.y; y < (tm.objectsMap.origin.y + tm.objectsMap.size.y); y++)
+        {
+            for (int x = tm.objectsMap.origin.x; x < (tm.objectsMap.origin.x + tm.objectsMap.size.x); x++)
+            {
+                TileBase tile = tm.objectsMap.GetTile(new Vector3Int(x, y, 0));
+                if (tile != null)
+                {
+                    if (tile.name.Equals("Tree_Nest_01"))
+                    {
+                        gameOver = false;
+                    }
+                }
+            }
+        }
+
+        if (gameOver)
+        {
+            hm.ToggleDeathScreen();
         }
     }
 }

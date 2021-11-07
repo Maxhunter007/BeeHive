@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
@@ -14,9 +15,11 @@ public class HUDManager : MonoBehaviour
     private Text waxAmount = null;
     private GameObject buildButton = null;
     private GameObject buildMenu = null;
+    public GameObject gameOverScreen;
     
     private TilemapManager tilemapManager = null;
     private ResourceManager resourceManager = null;
+    bool gameOver = false;
 
     // Start is called before the first frame update
     void Start()
@@ -40,6 +43,8 @@ public class HUDManager : MonoBehaviour
         buildButton = gameObject.transform.Find("BuildButton").gameObject;
         buildMenu = gameObject.transform.Find("BuildMenu").gameObject;
         buildMenu.SetActive(false);
+        
+        gameOverScreen.SetActive(false);
         
         tilemapManager = GameObject.Find("Grid").GetComponent<TilemapManager>();
         resourceManager = GameObject.Find("ResourceManager").GetComponent<ResourceManager>();
@@ -99,5 +104,27 @@ public class HUDManager : MonoBehaviour
     public void EnableBuyButton()
     {
         buildButton.SetActive(true);
+    }
+
+    public void RetryButton()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(1);
+    }
+
+    public void MainMenuButton()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(0);
+    }
+
+    public void ToggleDeathScreen()
+    {
+        if (!gameOver)
+        { 
+            gameOver = true;
+            Time.timeScale = 0;
+            gameOverScreen.SetActive(true);
+        }
     }
 }
