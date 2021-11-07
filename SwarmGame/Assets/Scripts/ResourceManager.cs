@@ -90,6 +90,16 @@ public class ResourceManager : MonoBehaviour
     {
         pollen += addedPollen;
         UpdateUI();
+    }   
+    public void AddHoney(int addedHoney)
+    {
+        honey += addedHoney;
+        UpdateUI();
+    }   
+    public void AddWax(int addedWax)
+    {
+        wax += addedWax;
+        UpdateUI();
     }
 
     public void ChangeHoney()

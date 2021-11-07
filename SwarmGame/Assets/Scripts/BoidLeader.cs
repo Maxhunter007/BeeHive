@@ -84,9 +84,15 @@ public class BoidLeader : MonoBehaviour
                     }
                 }
             }
-            else if (tm.objectsMap.GetTile(grid.WorldToCell(targetPos)).name.Equals("Flowers_01"))
+            else if (tm.objectsMap.GetTile(grid.WorldToCell(targetPos)).name.Equals("Tree_Nest_01"))
             {
-                
+                foreach (GameObject boid in boidList)
+                {
+                    if (boid.TryGetComponent(out SimpleBoid simpleBoid))
+                    {
+                        simpleBoid.TryDeliverResources();
+                    }
+                }
             }
         }
     }

@@ -109,8 +109,13 @@ public class SimpleBoid : MonoBehaviour
         }
     }
 
-    public void DeliverResources()
+    public void TryDeliverResources()
     {
-        
+        if (isCarryingResources)
+        {
+            isCarryingResources = false;
+            resourceManager.AddPollen(1);
+            resourceManager.AddHoney(1);
+        }
     }
 }

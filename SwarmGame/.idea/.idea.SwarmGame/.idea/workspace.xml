@@ -19,21 +19,29 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2c0ab39c-3afe-45c0-b813-3319dd7ad128" name="Default Changelist" comment="">
+    <list default="true" id="4fc9c797-8318-467b-b21b-973ea7317a23" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.SwarmGame/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SwarmGame/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.SwarmGame/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.SwarmGame/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/Bee_Fly_01 1.controller" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/Bee_Fly_01.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/Bee_Fly_01.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/Queen_Bee_Fly_01 1.controller" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/Queen_Bee_Fly_01.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/Queen_Bee_Fly_01.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/bee.controller" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/bee.controller.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/bee_move.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/bee_move.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animations/queen_bee_move.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animations/queen_bee_move.anim" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/BoidLeader.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/BoidLeader.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/bee.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/bee.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/BoidLeader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BoidLeader.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ResourceManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ResourceManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/SimpleBoid.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SimpleBoid.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/TilemapManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/TilemapManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tilemaps/Ground/Flowers_01.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tilemaps/Ground/Ground.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tilemaps/Ground/Ground.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tilemaps/Ground/testflowers.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tilemaps/Ground/testtile_hive.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tilemaps/Ground/testtile_hive.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tilemaps/imagesources/testflowers.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tilemaps/imagesources/testtile_hive.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Tilemaps/imagesources/testtile_hive.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemaps/Objects/Flowers_01.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tilemaps/Objects/Flowers_01.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemaps/Objects/Tree_01.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tilemaps/Objects/Tree_01.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemaps/Objects/Tree_Nest_01.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tilemaps/Objects/Tree_Nest_01.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tilemaps/TilePallete.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tilemaps/TilePallete.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Wasp.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Wasp_Fly_01.controller" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/GraphicsSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
