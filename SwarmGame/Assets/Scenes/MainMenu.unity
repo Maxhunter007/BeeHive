@@ -280,7 +280,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1e1e8558996b74e44a7ad01ee528e409, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8df9901dc22ec484095f7a63fe6f642c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -513,10 +513,10 @@ RectTransform:
   m_Father: {fileID: 41278883}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 531.59, y: -264.5}
-  m_SizeDelta: {x: -1103.1818, y: -529}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -89.1, y: 60}
+  m_SizeDelta: {x: 178.18726, y: 119.920746}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &532111448
 MonoBehaviour:
@@ -671,7 +671,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a069454e88658654eb8d52473444bd89, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7e98c62ce7070cc498f86b9a3182554c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -698,7 +698,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 903399838}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 87b74117a4a781c42bde28528bcbb01b, type: 3}
+  m_Script: {fileID: 11500000, guid: 417eb7054ab2b0c4986685fc29795a4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1107200846
@@ -839,7 +839,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1e1e8558996b74e44a7ad01ee528e409, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8df9901dc22ec484095f7a63fe6f642c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1067,7 +1067,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 1e1e8558996b74e44a7ad01ee528e409, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 8df9901dc22ec484095f7a63fe6f642c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

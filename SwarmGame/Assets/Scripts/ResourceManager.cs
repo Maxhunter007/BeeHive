@@ -65,6 +65,7 @@ public class ResourceManager : MonoBehaviour
             }
             UpdateUI();
             counter = 0.0f;
+            
         }
     }
     

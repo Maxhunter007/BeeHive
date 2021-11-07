@@ -15,7 +15,7 @@ public class WaspController : MonoBehaviour
     bool isMoving = false;
     public bool gameOver = false;
 
-    private float moveTime = 3.0f;
+    private float moveTime = 2.0f;
     private float timeCounter = 0.0f;
     [SerializeField] private float speed = 2.0f;
 
