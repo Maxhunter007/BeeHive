@@ -102,10 +102,10 @@ public class SimpleBoid : MonoBehaviour
 
     public void TryGatherResources()
     {
-        if (tilemapManager.tileAvailablePollen[tilemapManager.grid.WorldToCell(leader.transform.position)]>0 && !isCarryingResources)
+        if (tilemapManager.tileAvailableResources[tilemapManager.grid.WorldToCell(leader.transform.position)]>0 && !isCarryingResources)
         {
             isCarryingResources = true;
-            tilemapManager.tileAvailablePollen[tilemapManager.grid.WorldToCell(leader.transform.position)] -= 1;
+            tilemapManager.tileAvailableResources[tilemapManager.grid.WorldToCell(leader.transform.position)] -= 1;
         }
     }
 

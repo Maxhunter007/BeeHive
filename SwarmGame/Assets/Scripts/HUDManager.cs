@@ -4,12 +4,6 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
-public enum TileTypes
-{
-    nullTile,
-    beehive
-}
-
 public class HUDManager : MonoBehaviour
 {
     private bool initialized = false;
@@ -77,6 +71,22 @@ public class HUDManager : MonoBehaviour
         buildMenu.SetActive(true);
     }
 
+    public void BuyFlowersButton()
+    {
+
+        buildMenu.SetActive(false);
+        tilemapManager.SelectTile(TileTypes.flowers);
+        tilemapManager.buying = true;
+
+    }
+    public void BuyTreeButton()
+    {
+
+        buildMenu.SetActive(false);
+        tilemapManager.SelectTile(TileTypes.tree);
+        tilemapManager.buying = true;
+
+    }
     public void BuyHiveButton()
     {
 

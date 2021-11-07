@@ -2,6 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Resources
+{
+    Pollen,
+    Honey,
+    Wax
+}
+
+public struct TileCosts
+{
+    public int Amount { get; }
+    public Resources Material { get; }
+    public TileCosts(int amount, Resources material)
+    {
+        Amount = amount;
+        Material = material;
+    }
+}
+
 public class ResourceManager : MonoBehaviour
 {
     private int pollen;
@@ -12,21 +30,16 @@ public class ResourceManager : MonoBehaviour
     private float honeyDecayTime = 5.0f;
     private float counter = 0.0f;
 
-    private readonly int startingPollen = 10;
+    private readonly int startingPollen = 100;
     // private readonly int startingNectar = 10;
-    private readonly int startingHoney = 10;
-    private readonly int startingWax = 10;
-    
-
-    public readonly int hiveCost = 10;
-    public readonly int treeCost = 10;
-    public readonly int honeyCost = 10;
-    public readonly int waxCost = 10;
+    private readonly int startingHoney = 100;
+    private readonly int startingWax = 100;
 
     private HUDManager hud = null;
     
-    public Dictionary<TileTypes, int> tileCostMap = new Dictionary<TileTypes, int>();
     
+    public Dictionary<TileTypes, TileCosts> tileCostMap = new Dictionary<TileTypes, TileCosts>();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -65,8 +78,10 @@ public class ResourceManager : MonoBehaviour
     }
     private void InitializeBuildCosts()
     {
-        tileCostMap.Add(TileTypes.nullTile, 0);
-        tileCostMap.Add(TileTypes.beehive, 10);
+        tileCostMap.Add(TileTypes.nullTile, new TileCosts(0, Resources.Pollen));
+        tileCostMap.Add(TileTypes.flowers, new TileCosts(20, Resources.Pollen));
+        tileCostMap.Add(TileTypes.tree, new TileCosts(40, Resources.Pollen));
+        tileCostMap.Add(TileTypes.beehive, new TileCosts(25, Resources.Wax));
     }
 
     public int GetPollen()

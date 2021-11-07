@@ -4,6 +4,14 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEditor;
 
+public enum TileTypes
+{
+    nullTile,
+    flowers,
+    tree,
+    beehive
+}
+
 public class TilemapManager : MonoBehaviour
 {
     public Grid grid = null;
@@ -12,7 +20,9 @@ public class TilemapManager : MonoBehaviour
     private Tilemap groundMap = null;
     private TileTypes hoverTileType = TileTypes.nullTile;
     private Tile hoverTile = null;
-    public Tile BeeHiveTile;
+    public Tile flowers;
+    public Tile tree;
+    public Tile beeHiveTile;
 
     public bool buying = false;
     public bool inMenu = false;
@@ -27,7 +37,12 @@ public class TilemapManager : MonoBehaviour
 
     private BoidManager boidManager;
     
-    public Dictionary<Vector3Int, int> tileAvailablePollen = new Dictionary<Vector3Int, int>();
+    public Dictionary<Vector3Int, int> tileAvailableResources = new Dictionary<Vector3Int, int>();
+    public List<Vector3Int> listOfFlowers = new List<Vector3Int>();
+
+    private float regenerateResoureTime = 3.0f;
+    private float regenerateResourceTimer = 0;
+    
 
     // Start is called before the first frame update
     void Start() {
@@ -44,6 +59,8 @@ public class TilemapManager : MonoBehaviour
         {
             BuyPreview();
         }
+        
+        ResourceRegeneration();
     }
     
     private void InitializeReferences()
@@ -53,7 +70,10 @@ public class TilemapManager : MonoBehaviour
         objectsMap = gameObject.transform.Find("ObjectsMap").GetComponent<Tilemap>();
         groundMap = gameObject.transform.Find("GroundMap").GetComponent<Tilemap>();
         //buyableTiles.Add((Tile)AssetDatabase.LoadAssetAtPath("Assets/Tilemaps/Ground/testtile_hive.asset", typeof(Tile)));
-        buyableTiles.Add(BeeHiveTile);
+        
+        buyableTiles.Add(flowers);
+        buyableTiles.Add(tree);
+        buyableTiles.Add(beeHiveTile);
         hudManager = GameObject.Find("HUD").GetComponent<HUDManager>();
         resourceManager = GameObject.Find("ResourceManager").GetComponent<ResourceManager>();
         camera = Camera.main;
@@ -70,11 +90,12 @@ public class TilemapManager : MonoBehaviour
                 currentpos = new Vector3Int(x, y, 0);
                 if (objectsMap.HasTile(currentpos) && objectsMap.GetTile(currentpos).name.Equals("Flowers_01"))
                 {
-                    tileAvailablePollen.Add(currentpos, 10);
+                    tileAvailableResources.Add(currentpos, 10);
+                    listOfFlowers.Add(currentpos);
                 }
                 else
                 {
-                    tileAvailablePollen.Add(currentpos, 0);
+                    tileAvailableResources.Add(currentpos, 0);
                 }
             }
         }
@@ -96,18 +117,87 @@ public class TilemapManager : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            if (resourceManager.GetPollen()>=resourceManager.tileCostMap[hoverTileType])
-            {
-                resourceManager.AddPollen(-resourceManager.hiveCost);
-                objectsMap.SetTile(mousePos, hoverTile);
-                boidManager.createBoid(grid.CellToWorld(mousePos));
-                buying = false;
-                inMenu = false;
-                hudManager.EnableBuyButton();
-            }
-            else
+            if (objectsMap.HasTile(GetMousePosition()) && objectsMap.GetTile(GetMousePosition()).Equals(hoverTile))
             {
                 abortBuying();
+                return;
+            }
+            
+            switch (resourceManager.tileCostMap[hoverTileType].Material)
+            {
+                
+                case Resources.Pollen:
+                    if (resourceManager.GetPollen()>=resourceManager.tileCostMap[hoverTileType].Amount)
+                    {
+                        if (hoverTileType == TileTypes.flowers)
+                        {
+                            if (objectsMap.HasTile(GetMousePosition()) && objectsMap.GetTile(GetMousePosition()).Equals(tree))
+                            {
+                                abortBuying();
+                                break;
+                            }
+                            
+                            listOfFlowers.Add(GetMousePosition());
+                        }
+                        
+                        resourceManager.AddPollen(-resourceManager.tileCostMap[hoverTileType].Amount);
+                        objectsMap.SetTile(mousePos, hoverTile);
+                        
+                        buying = false;
+                        inMenu = false;
+                        hudManager.EnableBuyButton();
+                    }
+                    else
+                    {
+                        abortBuying();
+                    }
+                    break;
+                
+                case Resources.Honey:
+                    if (resourceManager.GetHoney()>=resourceManager.tileCostMap[hoverTileType].Amount)
+                    {
+                        resourceManager.AddHoney(-resourceManager.tileCostMap[hoverTileType].Amount);
+                        objectsMap.SetTile(mousePos, hoverTile);
+                                        
+                        buying = false;
+                        inMenu = false;
+                        hudManager.EnableBuyButton();
+                    }
+                    else
+                    {
+                        abortBuying();
+                    }
+                    break;
+                
+                case Resources.Wax:
+                    if (resourceManager.GetWax()>=resourceManager.tileCostMap[hoverTileType].Amount)
+                    {
+                        if (hoverTileType == TileTypes.beehive)
+                        {
+                            if (!objectsMap.HasTile(GetMousePosition()) || !objectsMap.GetTile(GetMousePosition()).Equals(tree))
+                            {
+                                abortBuying();
+                                break;
+                            }
+                            
+                            boidManager.createBoid(grid.CellToWorld(mousePos));
+                        }
+                        resourceManager.AddWax(-resourceManager.tileCostMap[hoverTileType].Amount);
+                        objectsMap.SetTile(mousePos, hoverTile);
+
+                        buying = false;
+                        inMenu = false;
+                        hudManager.EnableBuyButton();
+                    }
+                    else
+                    {
+                        abortBuying();
+                    }
+                    break;
+                    
+                default:
+                    abortBuying();
+                    break;
             }
         }
 
@@ -125,8 +215,14 @@ public class TilemapManager : MonoBehaviour
             case TileTypes.nullTile:
                 hoverTile = null;
                 break;
-            case TileTypes.beehive:
+            case TileTypes.flowers:
                 hoverTile = buyableTiles[0];
+                break;
+            case TileTypes.tree:
+                hoverTile = buyableTiles[1];
+                break; 
+            case TileTypes.beehive:
+                hoverTile = buyableTiles[2];
                 break;
             default:
                 hoverTile = null;
@@ -142,6 +238,22 @@ public class TilemapManager : MonoBehaviour
         SelectTile(TileTypes.nullTile);
         hudManager.EnableBuyButton();
         buyPreviewMap.SetTile(GetMousePosition(), null);
+    }
+
+    private void ResourceRegeneration()
+    {
+        regenerateResourceTimer += Time.deltaTime;
+        if (regenerateResourceTimer > regenerateResoureTime)
+        {
+            foreach (var flower in listOfFlowers)
+            {
+                if (tileAvailableResources[flower]<10)
+                {
+                    tileAvailableResources[flower] += 1;
+                }
+            }
+            regenerateResourceTimer = 0f;
+        }
     }
     
     
