@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 1040647593
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: db133ef09c5fd734cb164f52f5d4642f, type: 3}
+  m_Sprite: {fileID: 21300000, guid: eba8f063dd24b0c4f903253f5e10bdec, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -94,7 +94,7 @@ Animator:
   m_GameObject: {fileID: 4607613566912356764}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: ce494f0126bd46d4ca66fa07b89fe2bb, type: 2}
+  m_Controller: {fileID: 9100000, guid: 7127bbe553712b744a60a8e6b5b86afd, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -112,8 +112,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4607613566912356764}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5c0d3a78a70acd46ab7749f2a4aaa3c, type: 3}
+  m_Script: {fileID: 11500000, guid: 1acd628f0b199b9479b7ed57d09330a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameOver: 0
   speed: 2
-  treeTile: {fileID: 11400000, guid: 88cf43c99a3cf6d4d90d3d29648d8aec, type: 2}
+  treeTile: {fileID: 11400000, guid: a620e83b5b44812489e0710dcfe4db96, type: 2}
+  beeQueen: {fileID: 0}
