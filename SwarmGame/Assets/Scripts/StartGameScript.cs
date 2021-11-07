@@ -14,7 +14,10 @@ public class StartGameScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyUp(KeyCode.Return))
+        {
+            loadGame();
+        }
     }
 
     public void loadGame()

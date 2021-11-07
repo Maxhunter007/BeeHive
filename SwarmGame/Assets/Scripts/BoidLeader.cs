@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Windows.Speech;
 
 public class BoidLeader : MonoBehaviour
@@ -31,22 +32,15 @@ public class BoidLeader : MonoBehaviour
     {
         if (!tm.inMenu)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonUp(0) && !EventSystem.current.IsPointerOverGameObject())
             {
-                Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-                RaycastHit hit;
-                if (Physics.Raycast(ray, out hit)){
-                    if (hit.transform.CompareTag("Ground"))
-                    {
-                        targetPos = Input.mousePosition;
-                        targetPos.z = 0.3f;
-                        targetPos = cam.ScreenToWorldPoint(targetPos);
-                        targetPos = grid.CellToWorld(grid.WorldToCell(targetPos));
-                        targetPos.z = 0;
-                        Debug.Log(targetPos);
-                        hasTarget = true;
-                    }
-                }
+                targetPos = Input.mousePosition;
+                targetPos.z = 0.3f;
+                targetPos = cam.ScreenToWorldPoint(targetPos);
+                targetPos = grid.CellToWorld(grid.WorldToCell(targetPos));
+                targetPos.z = 0;
+                Debug.Log(targetPos);
+                hasTarget = true;
             }
 
             if (hasTarget)

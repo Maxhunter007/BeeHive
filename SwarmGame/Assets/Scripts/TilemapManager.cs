@@ -42,13 +42,15 @@ public class TilemapManager : MonoBehaviour
 
     private float regenerateResoureTime = 3.0f;
     private float regenerateResourceTimer = 0;
+
+    public int beeHiveCount = 0; 
     
 
     // Start is called before the first frame update
     void Start() {
         InitializeReferences();
         InitializeDictionary();
-        boidManager = GameObject.Find("BoidManager").GetComponent<BoidManager>();
+        InitializeHiveAmount();
     }
 
 
@@ -69,6 +71,7 @@ public class TilemapManager : MonoBehaviour
         buyPreviewMap = gameObject.transform.Find("BuyPreviewMap").GetComponent<Tilemap>();
         objectsMap = gameObject.transform.Find("ObjectsMap").GetComponent<Tilemap>();
         groundMap = gameObject.transform.Find("GroundMap").GetComponent<Tilemap>();
+        boidManager = GameObject.Find("BoidManager").GetComponent<BoidManager>();
         //buyableTiles.Add((Tile)AssetDatabase.LoadAssetAtPath("Assets/Tilemaps/Ground/testtile_hive.asset", typeof(Tile)));
         
         buyableTiles.Add(flowers);
@@ -139,6 +142,14 @@ public class TilemapManager : MonoBehaviour
                             
                             listOfFlowers.Add(GetMousePosition());
                         }
+                        else if (hoverTileType == TileTypes.tree)
+                        {
+                            if (objectsMap.HasTile(GetMousePosition()) && objectsMap.GetTile(GetMousePosition()).Equals(beeHiveTile))
+                            {
+                                abortBuying();
+                                break;
+                            }
+                        }
                         
                         resourceManager.AddPollen(-resourceManager.tileCostMap[hoverTileType].Amount);
                         objectsMap.SetTile(mousePos, hoverTile);
@@ -181,6 +192,7 @@ public class TilemapManager : MonoBehaviour
                             }
                             
                             boidManager.createBoid(grid.CellToWorld(mousePos));
+                            beeHiveCount++;
                         }
                         resourceManager.AddWax(-resourceManager.tileCostMap[hoverTileType].Amount);
                         objectsMap.SetTile(mousePos, hoverTile);
@@ -255,6 +267,22 @@ public class TilemapManager : MonoBehaviour
             regenerateResourceTimer = 0f;
         }
     }
-    
-    
+
+    private void InitializeHiveAmount()
+    {
+        for (int y = objectsMap.origin.y; y < (objectsMap.origin.y + objectsMap.size.y); y++)
+        {
+            for (int x = objectsMap.origin.x; x < (objectsMap.origin.x + objectsMap.size.x); x++)
+            {
+                TileBase tile = objectsMap.GetTile(new Vector3Int(x, y, 0));
+                if (tile != null)
+                {
+                    if (tile.name.Equals("Tree_Nest_01"))
+                    {
+                        beeHiveCount++;
+                    }
+                }
+            }
+        }
+    }
 }

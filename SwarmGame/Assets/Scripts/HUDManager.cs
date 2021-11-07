@@ -12,16 +12,18 @@ public class HUDManager : MonoBehaviour
     // private Text nectarAmount = null;
     private Text honeyAmount = null;
     private Text waxAmount = null;
+    private Text BeeAmount = null;
     private GameObject buildButton = null;
     private GameObject buildMenu = null;
     
     private TilemapManager tilemapManager = null;
     private ResourceManager resourceManager = null;
+    private BoidManager boidManager = null;
 
     // Start is called before the first frame update
     void Start()
     {
-        //InitializeReferences();
+        InitializeReferences();
     }
 
     // Update is called once per frame
@@ -32,18 +34,21 @@ public class HUDManager : MonoBehaviour
 
     public void InitializeReferences()
     {
-        pollenAmount = gameObject.transform.Find("PollenAmount").GetComponent<Text>();
+        pollenAmount = GameObject.Find("PollenAmount").GetComponent<Text>();
         // nectarAmount = gameObject.transform.Find("NectarAmount").GetComponent<Text>();
-        honeyAmount = gameObject.transform.Find("HoneyAmount").GetComponent<Text>();
-        waxAmount = gameObject.transform.Find("WaxAmount").GetComponent<Text>();
+        honeyAmount = GameObject.Find("HoneyAmount").GetComponent<Text>();
+        waxAmount = GameObject.Find("WaxAmount").GetComponent<Text>();
+        BeeAmount = GameObject.Find("BeeAmount").GetComponent<Text>();
         
         buildButton = gameObject.transform.Find("BuildButton").gameObject;
+        boidManager = FindObjectOfType<BoidManager>();
         buildMenu = gameObject.transform.Find("BuildMenu").gameObject;
         buildMenu.SetActive(false);
         
         tilemapManager = GameObject.Find("Grid").GetComponent<TilemapManager>();
         resourceManager = GameObject.Find("ResourceManager").GetComponent<ResourceManager>();
         initialized = true;
+        UpdateResourceAmount();
     }
 
     public bool GetInitialized()
@@ -53,10 +58,11 @@ public class HUDManager : MonoBehaviour
 
     public void UpdateResourceAmount()
     {
-        pollenAmount.text = "Pollen: " + resourceManager.GetPollen();
+        pollenAmount.text = ": " + resourceManager.GetPollen();
         // nectarAmount.text = "Nectar: " + resourceManager.GetNectar();
-        honeyAmount.text = "Honey: " + resourceManager.GetHoney();
-        waxAmount.text = "Wax: " + resourceManager.GetWax();
+        honeyAmount.text = ": " + resourceManager.GetHoney();
+        waxAmount.text = ": " + resourceManager.GetWax();
+        BeeAmount.text = ": " + (boidManager.getBoidList().Count-1) + "/" + tilemapManager.beeHiveCount;
     }
 
     public void ChangeHoneyButton()
@@ -99,5 +105,15 @@ public class HUDManager : MonoBehaviour
     public void EnableBuyButton()
     {
         buildButton.SetActive(true);
+    }
+
+    public void rebuyBeeButton()
+    {
+        if (resourceManager.GetPollen()>25 && boidManager.getBoidList().Count-1 <  tilemapManager.beeHiveCount)
+        {
+            resourceManager.AddPollen(-25);
+            boidManager.createBoid(FindObjectOfType<BoidLeader>().gameObject.transform.position);    
+        }
+        UpdateResourceAmount();
     }
 }

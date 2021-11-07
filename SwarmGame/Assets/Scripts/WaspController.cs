@@ -8,6 +8,7 @@ public class WaspController : MonoBehaviour
 {
     private Grid grid;
     private TilemapManager tm;
+    private HUDManager hudManager;
     private Vector3 targetPos;
     private Vector3Int nextCellPos;
     private bool hasMoveTarget = false;
@@ -28,6 +29,7 @@ public class WaspController : MonoBehaviour
         beeQueen = GameObject.Find("BoidLeader");
         bm = GameObject.Find("BoidManager").GetComponent<BoidManager>();
         grid = GameObject.Find("Grid").GetComponent<Grid>();
+        hudManager = FindObjectOfType<HUDManager>();
         tm = grid.GetComponent<TilemapManager>();
         Vector3Int nearestNestPos = new Vector3Int(1000, 1000, 1000);
         
@@ -134,20 +136,11 @@ public class WaspController : MonoBehaviour
             if (tm.objectsMap.GetTile(grid.WorldToCell(transform.position)).name.Equals("Tree_Nest_01"))
             {
                 tm.objectsMap.SetTile(grid.WorldToCell(transform.position), treeTile);
-                gameOver = true;
-                for (int y = tm.objectsMap.origin.y; y < (tm.objectsMap.origin.y + tm.objectsMap.size.y); y++)
+                tm.beeHiveCount--;
+                hudManager.UpdateResourceAmount();
+                if (tm.beeHiveCount == 0)
                 {
-                    for (int x = tm.objectsMap.origin.x; x < (tm.objectsMap.origin.x + tm.objectsMap.size.x); x++)
-                    {
-                        TileBase tile = tm.objectsMap.GetTile(new Vector3Int(x, y, 0));
-                        if (tile != null)
-                        {
-                            if (tile.name.Equals("Tree_Nest_01"))
-                            {
-                                gameOver = false;
-                            }
-                        }
-                    }
+                      gameOver = true;
                 }
 
                 if (gameOver)
