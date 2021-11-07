@@ -12,6 +12,7 @@ public class WaspController : MonoBehaviour
     private Vector3Int nextCellPos;
     private bool hasMoveTarget = false;
     bool isMoving = false;
+    public bool gameOver = false;
 
     private float moveTime = 3.0f;
     private float timeCounter = 0.0f;
@@ -47,9 +48,6 @@ public class WaspController : MonoBehaviour
                 }
             }
         }
-        
-        Debug.Log("Nearest Nest was at: " + grid.CellToWorld(nearestNestPos));
-        Debug.Log("Nearest Nest in Cell Coordinates: " + nearestNestPos);
 
         targetPos = grid.CellToWorld(nearestNestPos);
     }
@@ -59,8 +57,15 @@ public class WaspController : MonoBehaviour
     {
         if (grid.WorldToCell(transform.position) == grid.WorldToCell(beeQueen.transform.position))
         {
-            Destroy(bm.getBoidList()[0]);
-            bm.getBoidList().RemoveAt(0);
+            GameObject beeToDestroy = bm.getBoidList()[0];
+            int removeIndex = 0;
+            if (beeToDestroy.name == "BoidLeader" && bm.getBoidList().Count > 1)
+            {
+                beeToDestroy = bm.getBoidList()[1];
+                removeIndex = 1;
+            }
+            Destroy(beeToDestroy);
+            bm.getBoidList().RemoveAt(removeIndex);
             Destroy(gameObject);
         }
         timeCounter += Time.deltaTime;
@@ -68,8 +73,6 @@ public class WaspController : MonoBehaviour
         {
             Vector3Int waspPos = grid.WorldToCell(transform.position);
             Vector3Int target = grid.WorldToCell(targetPos);
-            Debug.Log("target is " + target);
-            Debug.Log("position is " + waspPos);
             nextCellPos = new Vector3Int(0, 0, 0);
 
             int xDiff = Math.Abs(waspPos.x - target.x);
@@ -131,6 +134,26 @@ public class WaspController : MonoBehaviour
             if (tm.objectsMap.GetTile(grid.WorldToCell(transform.position)).name.Equals("Tree_Nest_01"))
             {
                 tm.objectsMap.SetTile(grid.WorldToCell(transform.position), treeTile);
+                gameOver = true;
+                for (int y = tm.objectsMap.origin.y; y < (tm.objectsMap.origin.y + tm.objectsMap.size.y); y++)
+                {
+                    for (int x = tm.objectsMap.origin.x; x < (tm.objectsMap.origin.x + tm.objectsMap.size.x); x++)
+                    {
+                        TileBase tile = tm.objectsMap.GetTile(new Vector3Int(x, y, 0));
+                        if (tile != null)
+                        {
+                            if (tile.name.Equals("Tree_Nest_01"))
+                            {
+                                gameOver = false;
+                            }
+                        }
+                    }
+                }
+
+                if (gameOver)
+                {
+                    Debug.Log("GameOver is now true");
+                }
                 Destroy(gameObject);
             }
         }

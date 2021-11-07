@@ -9,7 +9,7 @@ public class TilemapManager : MonoBehaviour
     public Grid grid = null;
     private Tilemap buyPreviewMap = null; 
     public Tilemap objectsMap = null;
-    private Tilemap groundMap = null;
+    public Tilemap groundMap = null;
     private TileTypes hoverTileType = TileTypes.nullTile;
     private Tile hoverTile = null;
     public Tile BeeHiveTile;
