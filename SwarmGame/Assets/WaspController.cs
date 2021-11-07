@@ -18,10 +18,14 @@ public class WaspController : MonoBehaviour
     [SerializeField] private float speed = 2.0f;
 
     public Tile treeTile;
+    public GameObject beeQueen;
+    private BoidManager bm;
     
     // Start is called before the first frame update
     void Start()
     {
+        beeQueen = GameObject.Find("BoidLeader");
+        bm = GameObject.Find("BoidManager").GetComponent<BoidManager>();
         grid = GameObject.Find("Grid").GetComponent<Grid>();
         tm = grid.GetComponent<TilemapManager>();
         Vector3Int nearestNestPos = new Vector3Int(1000, 1000, 1000);
@@ -53,6 +57,12 @@ public class WaspController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (grid.WorldToCell(transform.position) == grid.WorldToCell(beeQueen.transform.position))
+        {
+            Destroy(bm.getBoidList()[0]);
+            bm.getBoidList().RemoveAt(0);
+            Destroy(gameObject);
+        }
         timeCounter += Time.deltaTime;
         if (timeCounter >= moveTime && grid.WorldToCell(transform.position) != grid.WorldToCell(targetPos) && !isMoving)
         {
