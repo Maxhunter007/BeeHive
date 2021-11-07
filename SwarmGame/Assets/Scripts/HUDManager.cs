@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
 
@@ -15,10 +16,12 @@ public class HUDManager : MonoBehaviour
     private Text BeeAmount = null;
     private GameObject buildButton = null;
     private GameObject buildMenu = null;
+    public GameObject gameOverScreen;
     
     private TilemapManager tilemapManager = null;
     private ResourceManager resourceManager = null;
     private BoidManager boidManager = null;
+    bool gameOver = false;
 
     // Start is called before the first frame update
     void Start()
@@ -44,6 +47,8 @@ public class HUDManager : MonoBehaviour
         boidManager = FindObjectOfType<BoidManager>();
         buildMenu = gameObject.transform.Find("BuildMenu").gameObject;
         buildMenu.SetActive(false);
+        
+        gameOverScreen.SetActive(false);
         
         tilemapManager = GameObject.Find("Grid").GetComponent<TilemapManager>();
         resourceManager = GameObject.Find("ResourceManager").GetComponent<ResourceManager>();
@@ -115,5 +120,27 @@ public class HUDManager : MonoBehaviour
             boidManager.createBoid(FindObjectOfType<BoidLeader>().gameObject.transform.position);    
         }
         UpdateResourceAmount();
+    }
+    
+    public void RetryButton()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(1);
+    }
+
+    public void MainMenuButton()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene(0);
+    }
+
+    public void ToggleDeathScreen()
+    {
+        if (!gameOver)
+        { 
+            gameOver = true;
+            Time.timeScale = 0;
+            gameOverScreen.SetActive(true);
+        }
     }
 }

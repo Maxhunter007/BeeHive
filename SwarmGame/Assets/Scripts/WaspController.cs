@@ -59,6 +59,10 @@ public class WaspController : MonoBehaviour
     {
         if (grid.WorldToCell(transform.position) == grid.WorldToCell(beeQueen.transform.position))
         {
+            if (bm.getBoidList().Count == 1)
+            {
+                bm.gameOver = true;
+            }
             GameObject beeToDestroy = bm.getBoidList()[0];
             int removeIndex = 0;
             if (beeToDestroy.name == "BoidLeader" && bm.getBoidList().Count > 1)
@@ -136,12 +140,14 @@ public class WaspController : MonoBehaviour
             if (tm.objectsMap.GetTile(grid.WorldToCell(transform.position)).name.Equals("Tree_Nest_01"))
             {
                 tm.objectsMap.SetTile(grid.WorldToCell(transform.position), treeTile);
+                
                 tm.beeHiveCount--;
                 hudManager.UpdateResourceAmount();
                 if (tm.beeHiveCount == 0)
                 {
                       gameOver = true;
                 }
+
 
                 if (gameOver)
                 {
